@@ -187,8 +187,7 @@
                 </div>
                 <div class="modal-body">
                     <h2 id="match-name"></h2>
-                    <img id="match-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpRlN16IYgpKdC-MfVUSDkXHz2H0wSs8z-Tp7-jckbMJxQlBN3"
-                        alt="">
+                    <img id="match-img" alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpRlN16IYgpKdC-MfVUSDkXHz2H0wSs8z-Tp7-jckbMJxQlBN3">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -209,6 +208,7 @@
                 $(".form-control").each(function () {
                     if ($(this).val() === "") { isValid = false; }
                 });
+
                 return isValid;
             }
 
@@ -230,7 +230,6 @@
                         $("#q9").val()
                     ]
                 };
-                console.log(inputData);
 
                 $.post("/api/friends", inputData, ({ name, photo }) => {
 
