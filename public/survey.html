@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>FriendFinder</title>
+    <title>Friend Finder</title>
 
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -163,17 +163,23 @@
         <br>
 
         <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
-        <hr>
-
-        <footer class="footer">
-            <div class="container">
-                <p>
-                    <a href="/api/friends">API Friends List</a>
-                </p>
-            </div>
-        </footer>
 
     </div>
+
+    <div id="warning-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h2>Please fill out all fields before submitting!</h2>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 
     <div id="results-modal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -198,7 +204,6 @@
     </div>
 
     <script type="text/javascript">
-
         $("#submit").on("click", event => {
             event.preventDefault();
 
@@ -206,7 +211,9 @@
                 var isValid = true;
 
                 $(".form-control").each(function () {
-                    if ($(this).val() === "") { isValid = false; }
+                    if ($(this).val() === "") {
+                        isValid = false;
+                    }
                 });
 
                 return isValid;
@@ -231,7 +238,10 @@
                     ]
                 };
 
-                $.post("/api/friends", inputData, ({ name, photo }) => {
+                $.post("/api/friends", inputData, ({
+                    name,
+                    photo
+                }) => {
 
                     $("#match-name").text(name);
                     $("#match-img").attr("src", photo);
@@ -240,7 +250,7 @@
 
                 });
             } else {
-                alert("Please fill out all fields before submitting!");
+                $("#warning-modal").modal("toggle");
             }
 
         });
