@@ -1,4 +1,4 @@
-var friendList = [
+const friendList = [
   {
     name: "Elias Martinez",
     photo:
